@@ -29,8 +29,16 @@ public class Movie
     @Column(name = "duration",columnDefinition = "TIMESTAMP")
     private LocalDateTime duration;
 
-    @OneToMany(mappedBy = "star_cast_id",cascade = CascadeType.ALL)
-    private List<StarCast> starCast;
-
     private String imdbRating;
+
+    @OneToMany(mappedBy = "movies",cascade = CascadeType.ALL)
+    private List<Show> shows;
+
+    @ManyToMany
+    @JoinTable(name = "movie_startcasts",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "start_cast_id"))
+    private List<StarCast> starCasts;
+
+
 }

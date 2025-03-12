@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "screen")
 @AllArgsConstructor
@@ -23,13 +25,17 @@ public class Screen
 
     private String seatCountPerRow;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "theather_id")
-    private Theather theather;
-
     private boolean isActive;
 
     private ScreenType screenType;
 
+    @ManyToOne(targetEntity = Theather.class,fetch = FetchType.LAZY)
+    @JoinColumn(name = "theather_id")
+    private Theather theather;
 
+    @ManyToMany
+    @JoinTable(name = "screen_seats",
+        joinColumns = @JoinColumn(name = "screen_id"),
+        inverseJoinColumns = @JoinColumn(name = "seat_id"))
+    private List<Seat> seats;
 }

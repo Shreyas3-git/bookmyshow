@@ -5,6 +5,8 @@ import jdk.jfr.BooleanFlag;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "seat")
 @AllArgsConstructor
@@ -19,9 +21,15 @@ public class Seat
     @Column(name = "seat_number",columnDefinition = "VARCHAR(55)")
     private String seatNumber;
 
-    @Column(name = "seat_number",columnDefinition = "BIT")
+    @Column(name = "is_booked",columnDefinition = "BOOLEAN")
     private boolean isBooked;
 
     //gold,diamond,silver
     private String catagory;
+
+    @ManyToMany(mappedBy = "seats")
+    private List<Screen> screens;
+
+    @ManyToMany(mappedBy = "seats")
+    private List<Booking> bookings;
 }

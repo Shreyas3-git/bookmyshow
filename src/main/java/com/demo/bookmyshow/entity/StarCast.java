@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "start_cast")
 @Data
@@ -31,4 +33,7 @@ public class StarCast
 
     @Column(name = "dob",columnDefinition = "VARCHAR(50)")
     private String dob;
+
+    @ManyToMany(mappedBy = "starCasts")
+    private List<Movie> movies;
 }

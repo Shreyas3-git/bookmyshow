@@ -21,9 +21,13 @@ public class Theather
     private Long id;
 
     private String name;
+
     private String location;
 
-    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "theather",cascade = CascadeType.ALL)
     private List<Screen> screens;
+
+    @OneToMany(mappedBy = "theather",cascade = CascadeType.ALL)
+    private List<Show> shows;
 
 }

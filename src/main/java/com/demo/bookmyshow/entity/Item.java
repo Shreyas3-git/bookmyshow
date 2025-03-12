@@ -29,4 +29,11 @@ public class Item
     @Column(name = "price",columnDefinition = "DOUBLE")
     private Double price;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "show_id")
+    private Show shows;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "booking_id")
+    private Booking cartItems;
 }

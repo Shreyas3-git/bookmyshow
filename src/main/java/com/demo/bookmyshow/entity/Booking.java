@@ -34,9 +34,13 @@ public class Booking
     )
     private List<Seat> seats;
 
+    @OneToMany(mappedBy = "cartItems",cascade = CascadeType.ALL)
+    private List<Item> cartItems;
+
+
     @Column(name = "total_amount",columnDefinition = "DOUBLE")
     private Double totalAmount;
 
-    @Column(name = "status",columnDefinition = "status")
+    @Column(name = "status",columnDefinition = "VARCHAR(50)")
     private String status;
 }

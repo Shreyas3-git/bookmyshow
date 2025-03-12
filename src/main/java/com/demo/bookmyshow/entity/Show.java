@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "show")
+@Table(name = "shows")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,20 +17,24 @@ public class Show
 {
     @Id
     @GeneratedValue(generator = "native",strategy = GenerationType.AUTO)
-    @Column(name = "booking_id",columnDefinition = "BIGINT")
+    @Column(name = "show_id",columnDefinition = "BIGINT")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "show_time",columnDefinition = "DATETIME")
+    private LocalDateTime showTime;
+
+    @ManyToOne
     @JoinColumn(name = "movie_id")
-    private Movie movie;
+    private Movie movies;
 
     @ManyToOne
     @JoinColumn(name = "screen_id")
     private Screen screen;
 
-    @Column(name = "show_time",columnDefinition = "DATETIME")
-    private LocalDateTime showTime;
+    @ManyToOne(targetEntity = Theather.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "theather_id")
+    private Theather theather;
 
-    @OneToMany(mappedBy = "show", cascade = CascadeType.ALL)
-    private List<Seat> seats;
+    @OneToMany(mappedBy = "shows",cascade = CascadeType.ALL)
+    private List<Item> items;
 }
