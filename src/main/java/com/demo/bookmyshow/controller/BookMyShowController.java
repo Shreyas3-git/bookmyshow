@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +18,12 @@ public class BookMyShowController
     @Autowired
     private UserProfileRepository userProfileRepository;
 
-    @GetMapping("/public/shows")
-    public String getShows() {
+    @PostMapping("/public/shows")
+    @PreAuthorize("hasRole('USER')")
+    public String getShows(Authentication authentication) {
+        String email = authentication.getName(); // Extracted from JWT
+        userProfileRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
         return "List of available shows";
     }
 
