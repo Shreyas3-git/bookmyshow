@@ -19,8 +19,12 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/api/public/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers(
+                                "/oauth2/jwks",
+                                "/errors",
+                                "/.well-known/openid-configuration"
+                        ).permitAll()
+                        .requestMatchers("/api/public/**","/api/profile").authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
