@@ -34,4 +34,6 @@ public class BookMyShowController
         return userProfileRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
     }
+
+
 }
