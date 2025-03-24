@@ -3,6 +3,7 @@ package com.demo.bookmyshow.controller;
 import com.demo.bookmyshow.entity.UserProfile;
 import com.demo.bookmyshow.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,11 @@ public class BookMyShowController
     private UserProfileRepository userProfileRepository;
 
     @PostMapping("/public/shows")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("isAuthenticated()")
+    @Secured("ROLE_USER")
     public String getShows(Authentication authentication) {
         String email = authentication.getName(); // Extracted from JWT
+        System.out.println("email => "+email);
         userProfileRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
         return "List of available shows";

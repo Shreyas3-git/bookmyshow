@@ -17,13 +17,12 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     show-sql: true
+
   security:
     oauth2:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:9000/oauth2/jwks
-#          issuer-uri: http://localhost:9000
-
 
 logging:
   level:
