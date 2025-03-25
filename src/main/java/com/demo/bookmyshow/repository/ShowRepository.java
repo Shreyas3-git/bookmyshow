@@ -1,7 +1,9 @@
 package com.demo.bookmyshow.repository;
 
-import com.demo.bookmyshow.entity.Booking;
+import com.demo.bookmyshow.entity.Show;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ShowRepository extends JpaRepository<Booking,Long> {
+@Repository
+public interface ShowRepository extends JpaRepository<Show,Long> {
 }

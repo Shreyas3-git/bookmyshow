@@ -1,4 +1,4 @@
-package com.demo.bookmyshow.config;
+package com.demo.bookmyshow.configsecurity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,7 @@
 package com.demo.bookmyshow.entity;
 
 
+import com.demo.bookmyshow.entity.oauth.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,9 @@ public class Booking
     @Column(name = "booking_id",columnDefinition = "BIGINT")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "show_id")

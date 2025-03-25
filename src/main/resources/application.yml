@@ -4,12 +4,20 @@ server:
 spring:
   application:
     name: bookmyshow-application
-  datasource:
-    url: jdbc:mysql://localhost:3306/bookmyshow?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=True
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  db1:
+    datasource:
+      jdbc-url: jdbc:mysql://localhost:3306/bookmyshow?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=True
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  db2:
+    datasource:
+      jdbc-url: jdbc:mysql://localhost:3306/oauth_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=True
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: update
     properties:

@@ -1,7 +1,7 @@
 package com.demo.bookmyshow.controller;
 
-import com.demo.bookmyshow.entity.UserProfile;
-import com.demo.bookmyshow.repository.UserProfileRepository;
+import com.demo.bookmyshow.entity.oauth.User;
+import com.demo.bookmyshow.repository.oauth.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +17,7 @@ public class BookMyShowController
 {
 
     @Autowired
-    private UserProfileRepository userProfileRepository;
+    private UserRepository userProfileRepository;
 
     @PostMapping("/public/shows")
     @PreAuthorize("isAuthenticated()")
@@ -32,7 +32,7 @@ public class BookMyShowController
 
     @GetMapping("/profile")
     @PreAuthorize("hasRole('USER')")
-    public UserProfile getProfile(Authentication authentication) {
+    public User getProfile(Authentication authentication) {
         String email = authentication.getName(); // Extracted from JWT
         return userProfileRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
