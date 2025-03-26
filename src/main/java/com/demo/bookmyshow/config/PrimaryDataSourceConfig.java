@@ -35,6 +35,7 @@ public class PrimaryDataSourceConfig
     }
 
     @Bean
+    @Primary
     public LocalContainerEntityManagerFactoryBean db1EntityManagerFactory(
             EntityManagerFactoryBuilder builder,
             @Qualifier("db1DataSource") DataSource dataSource) {

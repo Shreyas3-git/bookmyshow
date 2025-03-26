@@ -19,9 +19,9 @@ public class Booking
     @Column(name = "booking_id",columnDefinition = "BIGINT")
     private Long id;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "show_id")
@@ -37,7 +37,6 @@ public class Booking
 
     @OneToMany(mappedBy = "cartItems",cascade = CascadeType.ALL)
     private List<Item> cartItems;
-
 
     @Column(name = "total_amount",columnDefinition = "DOUBLE")
     private Double totalAmount;
