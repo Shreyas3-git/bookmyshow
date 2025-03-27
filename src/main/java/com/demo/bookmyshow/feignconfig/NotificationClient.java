@@ -15,7 +15,7 @@ import java.util.Map;
 public interface NotificationClient {
 
     @PostMapping("${app.notifications.sendOtp.url}")
-    public ResponseEntity<SendOtpResponse> sendOtp(@RequestParam("serviceSid") String serviceSid, @RequestHeader Map<String,String> map, @RequestBody String request);
+    public ResponseEntity<String> sendOtp(@RequestParam("serviceSid") String serviceSid, @RequestHeader Map<String,String> map, @RequestBody String request);
 
     @PostMapping("${app.notifications.verifyOtp.url}")
     public ResponseEntity<String> verifyOtp(@RequestParam("serviceSid")  String serviceSid, @RequestHeader Map<String,String> hMap, @RequestBody String request);
