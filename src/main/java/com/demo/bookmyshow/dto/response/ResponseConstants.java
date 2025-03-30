@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 public class ResponseConstants
 {
     @Value("sendotp.success-message")
-    private static String SUCCESS_MESSAGE;
+    public static String SENDOTP_SUCCESS_MESSAGE;
 
-    private static String SUCCESS_ERROR_CODE;
+    @Value("sendotp.failure-message")
+    public static String SENDOTP_FAILED_MESSAGE;
 }
