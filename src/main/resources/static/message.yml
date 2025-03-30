@@ -1,0 +1,3 @@
+sendotp:
+    success-message: OTP Send Successfully
+    failure-message: Failed to Send OTP

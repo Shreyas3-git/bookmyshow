@@ -16,9 +16,11 @@ import org.yaml.snakeyaml.util.UriEncoder;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 @Service
@@ -53,9 +55,23 @@ public class CustomerSendOtpService
         log.info("SendOtp Raw Response => "+new Gson().toJson(responseBody));
         SendOtpResponse response = new Gson().fromJson(responseBody.getBody(), SendOtpResponse.class);
         if(responseBody.getStatusCode().is2xxSuccessful()) {
-
+            String rrn = UUID.randomUUID() + "-" + System.currentTimeMillis();
+            return ResponseEntity.ok(CommonResponse.builder().rrn(rrn)
+                    .sid(response.getSid())
+                    .errorCode("200")
+                    .status("SUCCESS")
+                    .message("OTP Send Successfully")
+                    .timestamp(LocalDateTime.now())
+                    .build());
+        } else {
+            return ResponseEntity.ok(CommonResponse.builder()
+                    .sid(response.getSid())
+                    .errorCode("400")
+                    .status("FAILURE")
+                    .message("Failed to Send OTP")
+                    .timestamp(LocalDateTime.now())
+                    .build());
         }
-        return ResponseEntity.ok(CommonResponse.builder().build());
     }
 
     private final Supplier<String> getBasicAuthHeader = () -> {
