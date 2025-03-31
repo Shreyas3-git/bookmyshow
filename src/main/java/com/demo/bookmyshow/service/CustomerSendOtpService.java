@@ -7,7 +7,7 @@ import com.demo.bookmyshow.dto.response.ResponseConstants;
 import com.demo.bookmyshow.dto.response.SendOtpResponse;
 import com.demo.bookmyshow.dto.response.Status;
 import com.demo.bookmyshow.feignconfig.NotificationClient;
-import com.demo.bookmyshow.repository.CustomerRepository;
+import com.demo.bookmyshow.repository.primary.CustomerRepository;
 import com.nimbusds.jose.shaded.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

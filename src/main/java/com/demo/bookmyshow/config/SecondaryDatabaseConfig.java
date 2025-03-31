@@ -20,7 +20,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "db2EntityManagerFactory",
         transactionManagerRef = "db2TransactionManager",
-        basePackages = {"com.demo.bookmyshow.repository.oauth"}
+        basePackages = {"com.demo.bookmyshow.repository.secondary"}
 )
 public class SecondaryDatabaseConfig
 {
@@ -39,7 +39,7 @@ public class SecondaryDatabaseConfig
         properties.put("hibernate.hbm2ddl.auto", "update");
         return builder
                 .dataSource(dataSource)
-                .packages("com.demo.bookmyshow.entity.oauth")
+                .packages("com.demo.bookmyshow.entity.secondary")
                 .persistenceUnit("db2")
                 .properties(properties)
                 .build();

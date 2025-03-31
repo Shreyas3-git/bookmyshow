@@ -1,6 +1,6 @@
-package com.demo.bookmyshow.repository;
+package com.demo.bookmyshow.repository.primary;
 
-import com.demo.bookmyshow.entity.Seat;
+import com.demo.bookmyshow.entity.primary.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

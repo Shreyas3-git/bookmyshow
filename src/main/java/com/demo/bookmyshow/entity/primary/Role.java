@@ -1,4 +1,4 @@
-package com.demo.bookmyshow.entity;
+package com.demo.bookmyshow.entity.primary;
 
 public enum Role
 {

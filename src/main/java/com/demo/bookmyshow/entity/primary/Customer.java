@@ -1,6 +1,6 @@
-package com.demo.bookmyshow.entity;
+package com.demo.bookmyshow.entity.primary;
 
-import com.demo.bookmyshow.entity.oauth.User;
+import com.demo.bookmyshow.entity.secondary.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,9 +36,9 @@ public class Customer
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private User user;
+//    @OneToOne
+//    @JoinColumn(name = "id")
+//    private User user;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<PaymentMethod> paymentMethods;

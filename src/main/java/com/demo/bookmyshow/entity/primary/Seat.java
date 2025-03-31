@@ -1,7 +1,6 @@
-package com.demo.bookmyshow.entity;
+package com.demo.bookmyshow.entity.primary;
 
 import jakarta.persistence.*;
-import jdk.jfr.BooleanFlag;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

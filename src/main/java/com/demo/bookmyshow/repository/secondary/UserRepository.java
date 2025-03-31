@@ -1,6 +1,6 @@
-package com.demo.bookmyshow.repository.oauth;
+package com.demo.bookmyshow.repository.secondary;
 
-import com.demo.bookmyshow.entity.oauth.User;
+import com.demo.bookmyshow.entity.secondary.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,8 @@
 package com.demo.bookmyshow.controller;
 
-import com.demo.bookmyshow.entity.oauth.User;
-import com.demo.bookmyshow.repository.oauth.UserRepository;
+import com.demo.bookmyshow.entity.secondary.User;
+import com.demo.bookmyshow.repository.secondary.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;

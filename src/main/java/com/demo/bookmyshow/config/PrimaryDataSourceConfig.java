@@ -22,7 +22,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "db1EntityManagerFactory",
         transactionManagerRef = "db1TransactionManager",
-        basePackages = {"com.demo.bookmyshow.repository.bookmyshow"}
+        basePackages = {"com.demo.bookmyshow.repository.primary"}
 )
 public class PrimaryDataSourceConfig
 {
@@ -45,7 +45,7 @@ public class PrimaryDataSourceConfig
 
         return builder
                 .dataSource(dataSource)
-                .packages("com.demo.bookmyshow.entity")
+                .packages("com.demo.bookmyshow.entity.primary")
                 .persistenceUnit("db1")
                 .properties(properties)
                 .build();

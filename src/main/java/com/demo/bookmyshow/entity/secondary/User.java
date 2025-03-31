@@ -1,4 +1,4 @@
-package com.demo.bookmyshow.entity.oauth;
+package com.demo.bookmyshow.entity.secondary;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

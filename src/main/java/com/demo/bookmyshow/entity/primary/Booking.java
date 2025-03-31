@@ -1,7 +1,6 @@
-package com.demo.bookmyshow.entity;
+package com.demo.bookmyshow.entity.primary;
 
 
-import com.demo.bookmyshow.entity.oauth.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
