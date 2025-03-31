@@ -36,10 +36,6 @@ public class Customer
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Booking> bookings;
 
-//    @OneToOne
-//    @JoinColumn(name = "id")
-//    private User user;
-
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<PaymentMethod> paymentMethods;
 }

@@ -8,6 +8,7 @@ import com.demo.bookmyshow.dto.response.Status;
 import com.demo.bookmyshow.entity.secondary.User;
 import com.demo.bookmyshow.repository.secondary.UserRepository;
 import com.demo.bookmyshow.service.CustomerSendOtpService;
+import com.nimbusds.jose.shaded.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.function.Supplier;
 
 @RestController
 @RequestMapping("/bookmyshow/api")
@@ -52,9 +54,10 @@ public class BookMyShowController
         String email = authentication.getName();
         return userProfileRepository.findByEmail(email)
                 .map(user -> {
-                    System.out.println("********************");
+                    System.out.println("******************** "+new Gson().toJson(request));
                     return customerSendOtpService.sendOpt(request);
-                }).orElseGet(() -> new ResponseEntity<>(CommonResponse.builder()
+                })
+                .orElseGet(() -> new ResponseEntity<>(CommonResponse.builder()
                         .timestamp(LocalDateTime.now())
                         .message(ResponseConstants.INVALID_TOKEN)
                         .errorCode(ErrorCode.UNAUTHORIZED.name())
