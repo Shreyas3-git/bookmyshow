@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.oauth2.resourceserver.
 
 @SpringBootApplication
 @EnableFeignClients
-@OAuth2ResourceServerSecurityMarker
-//@EnableJpaRepositories(basePackages = {"com.demo.bookmyshow.repository"})
 public class BookmyshowApplication {
 
 	public static void main(String[] args) {

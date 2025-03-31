@@ -6,7 +6,8 @@ public enum ErrorCode
     BAD_REQUEST(400),
     UNEXPECTED_ERROR(500),
     DEPENDENCY_FAILED(424),
-    CONFLICT(409);
+    CONFLICT(409),
+    UNAUTHORIZED(401);
 
     private int errorCode;
     ErrorCode(int errorCode) {

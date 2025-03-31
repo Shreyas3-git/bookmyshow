@@ -10,20 +10,43 @@ spring:
       username: root
       password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      max-lifetime: 2000000
+      connection-timeout: 30000
+      pool-name: PrimaryDB-Pool
   db2:
     datasource:
       jdbc-url: jdbc:mysql://localhost:3306/oauth_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=True
       username: root
       password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      max-lifetime: 2000000
+      connection-timeout: 30000
+      pool-name: OAuthDB-Pool
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate # safe in production if we add any column or new table it will fail fast application at startup change validate to update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     show-sql: true
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,metrics
+#  metrics:
+#    enable:
+#      hikaricp: true
 
   security:
     oauth2:
