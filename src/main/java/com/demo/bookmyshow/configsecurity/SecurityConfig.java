@@ -26,6 +26,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/errors",
                                 "/.well-known/openid-configuration"
+                                ,"/api/getPdf"
                         ).permitAll()
                         .requestMatchers("/bookmyshow/api/**","/bookmyshow/admin/**").authenticated()
                 )

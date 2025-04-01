@@ -1,6 +1,7 @@
 package com.demo.bookmyshow.controller;
 
 import com.demo.bookmyshow.dto.CommonResponse;
+import com.demo.bookmyshow.dto.pdf.CountryReq;
 import com.demo.bookmyshow.dto.request.SendOtpRequest;
 import com.demo.bookmyshow.dto.response.ErrorCode;
 import com.demo.bookmyshow.dto.response.ResponseConstants;
@@ -8,14 +9,17 @@ import com.demo.bookmyshow.dto.response.Status;
 import com.demo.bookmyshow.entity.secondary.User;
 import com.demo.bookmyshow.repository.secondary.UserRepository;
 import com.demo.bookmyshow.service.CustomerSendOtpService;
+import com.demo.bookmyshow.service.SendPDFAttachmentService;
 import com.nimbusds.jose.shaded.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.function.Supplier;
 

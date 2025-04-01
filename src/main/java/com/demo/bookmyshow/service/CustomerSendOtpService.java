@@ -42,7 +42,11 @@ public class CustomerSendOtpService
         SendOtpResponse response = new Gson().fromJson(responseBody.getBody(), SendOtpResponse.class);
         if(responseBody.getStatusCode().is2xxSuccessful()) {
             String rrn = UUID.randomUUID() + "-" + System.currentTimeMillis();
-            Customer customer = Customer.builder().rrn(rrn).phoneNumber(request.getPhoneNumber()).build();
+            Customer customer = Customer.builder()
+                    .rrn(rrn)
+                    .phoneNumber(request.getPhoneNumber())
+                    .referenceNumber(response.getSid())
+                    .build();
             customerRepository.save(customer);
             return ResponseEntity.ok(CommonResponse.builder().rrn(rrn)
                 .sid(response.getSid())

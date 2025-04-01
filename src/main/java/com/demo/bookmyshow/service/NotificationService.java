@@ -55,4 +55,16 @@ public class NotificationService
         return "+91" + digitsOnly;
     }
 
+    public ResponseEntity<String> twilioVerifyOtp(String otp,String phoneNumber) {
+        String phoneNum = formatToE164(phoneNumber);
+        String auth = getBasicAuthHeader.get();
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Type","x-www-form-urlencoded");
+        headers.put("Authorization",auth);
+        String encodedOtp = URLEncoder.encode(otp,StandardCharsets.UTF_8);
+        String encodedPhoneNumber = URLEncoder.encode(phoneNum,StandardCharsets.UTF_8);
+        String requestBody = "Code=" + encodedOtp + "&To=" + encodedPhoneNumber;
+        log.info(String.format("VerifyOtp Request: %s and Request Header: %s",requestBody,headers));
+        return notificationClient.verifyOtp(serviceSid,headers,requestBody);
+    }
 }
