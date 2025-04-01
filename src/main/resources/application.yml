@@ -39,15 +39,6 @@ spring:
         format_sql: true
     show-sql: true
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: health,metrics
-#  metrics:
-#    enable:
-#      hikaricp: true
-
   security:
     oauth2:
       resourceserver:

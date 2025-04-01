@@ -36,7 +36,7 @@ public class Customer
     @Column(name = "rrn", columnDefinition = "VARCHAR(80)")
     private String rrn;
 
-    @Column(name = "rrn", columnDefinition = "VARCHAR(80)")
+    @Column(name = "reference_number", columnDefinition = "VARCHAR(80)")
     private String referenceNumber;
 
     @Column(name = "is_phone_number_verified", columnDefinition = "BOOLEAN")

@@ -3,12 +3,14 @@ package com.demo.bookmyshow.controller;
 import com.demo.bookmyshow.dto.CommonResponse;
 import com.demo.bookmyshow.dto.pdf.CountryReq;
 import com.demo.bookmyshow.dto.request.SendOtpRequest;
+import com.demo.bookmyshow.dto.request.VerifyOtpRequest;
 import com.demo.bookmyshow.dto.response.ErrorCode;
 import com.demo.bookmyshow.dto.response.ResponseConstants;
 import com.demo.bookmyshow.dto.response.Status;
 import com.demo.bookmyshow.entity.secondary.User;
 import com.demo.bookmyshow.repository.secondary.UserRepository;
 import com.demo.bookmyshow.service.CustomerSendOtpService;
+import com.demo.bookmyshow.service.CustomerVerifyOtpService;
 import com.demo.bookmyshow.service.SendPDFAttachmentService;
 import com.nimbusds.jose.shaded.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class BookMyShowController
     @Autowired
     private CustomerSendOtpService customerSendOtpService;
 
+    @Autowired
+    private CustomerVerifyOtpService customerVerifyOtpService;
+
     @PostMapping("/shows")
     @PreAuthorize("hasRole('USER')")
     public String getShows(Authentication authentication) {
@@ -56,18 +61,26 @@ public class BookMyShowController
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<CommonResponse> sendOtp(Authentication authentication, @RequestBody SendOtpRequest request) {
         String email = authentication.getName();
-        return userProfileRepository.findByEmail(email)
-                .map(user -> {
-                    System.out.println("******************** "+new Gson().toJson(request));
-                    return customerSendOtpService.sendOpt(request);
-                })
-                .orElseGet(() -> new ResponseEntity<>(CommonResponse.builder()
-                        .timestamp(LocalDateTime.now())
-                        .message(ResponseConstants.INVALID_TOKEN)
-                        .errorCode(ErrorCode.UNAUTHORIZED.name())
-                        .status(Status.FAILED.name())
-                        .build(),
-                        HttpStatus.UNAUTHORIZED));
+        return userProfileRepository.findByEmail(email).map(user -> customerSendOtpService.sendOpt(request))
+            .orElseGet(() -> new ResponseEntity<>(CommonResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ResponseConstants.INVALID_TOKEN)
+                .errorCode(ErrorCode.UNAUTHORIZED.name())
+                .status(Status.FAILED.name())
+                .build(),
+                HttpStatus.UNAUTHORIZED));
     }
 
+    @PostMapping("/verifyOtp")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<CommonResponse> verifyOtp(Authentication authentication, @RequestBody VerifyOtpRequest request) {
+        String email = authentication.getName();
+        return userProfileRepository.findByEmail(email).map(user -> customerVerifyOtpService.verifyOtp(request))
+            .orElseGet(() -> new ResponseEntity<>(CommonResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .message(ResponseConstants.INVALID_TOKEN)
+                .errorCode(ErrorCode.UNAUTHORIZED.name())
+                .status(Status.FAILED.name())
+                .build(),HttpStatus.UNAUTHORIZED));
+    }
 }

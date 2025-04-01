@@ -1,6 +1,7 @@
 package com.demo.bookmyshow.service;
 
 import com.demo.bookmyshow.dto.request.SendOtpRequest;
+import com.demo.bookmyshow.dto.request.VerifyOtpRequest;
 import com.demo.bookmyshow.feignconfig.NotificationClient;
 import com.nimbusds.jose.shaded.gson.Gson;
 import org.slf4j.Logger;
@@ -55,16 +56,23 @@ public class NotificationService
         return "+91" + digitsOnly;
     }
 
-    public ResponseEntity<String> twilioVerifyOtp(String otp,String phoneNumber) {
+    public ResponseEntity<String> twilioVerifyOtp(VerifyOtpRequest request,String phoneNumber) {
         String phoneNum = formatToE164(phoneNumber);
-        String auth = getBasicAuthHeader.get();
+//        String auth = getBasicAuthHeader.get();
+//        Map<String,String> headers = new HashMap<>();
+//        headers.put("Content-Type","x-www-form-urlencoded");
+//        headers.put("Authorization",auth);
+//        String encodedOtp = URLEncoder.encode(otp,StandardCharsets.UTF_8);
+//        String encodedPhoneNumber = URLEncoder.encode(phoneNum,StandardCharsets.UTF_8);
+//        String requestBody = "Code=" + encodedOtp + "&To=" + encodedPhoneNumber;
+//        log.info(String.format("VerifyOtp Request: %s and Request Header: %s",requestBody,headers));
         Map<String,String> headers = new HashMap<>();
-        headers.put("Content-Type","x-www-form-urlencoded");
-        headers.put("Authorization",auth);
-        String encodedOtp = URLEncoder.encode(otp,StandardCharsets.UTF_8);
-        String encodedPhoneNumber = URLEncoder.encode(phoneNum,StandardCharsets.UTF_8);
-        String requestBody = "Code=" + encodedOtp + "&To=" + encodedPhoneNumber;
-        log.info(String.format("VerifyOtp Request: %s and Request Header: %s",requestBody,headers));
+        headers.put("Content-Type","application/x-www-form-urlencoded");
+        headers.put("Authorization",getBasicAuthHeader.get());
+        String encodedPhoneNum = URLEncoder.encode(phoneNum,StandardCharsets.UTF_8);
+        String encodedOtp = URLEncoder.encode(request.getOtp(),StandardCharsets.UTF_8);
+        String requestBody = "Code=" + encodedOtp + "&To=" + encodedPhoneNum;
+        log.info(String.format("VerifyOtp Request : %s and Request Header : %s",requestBody,headers));
         return notificationClient.verifyOtp(serviceSid,headers,requestBody);
     }
 }

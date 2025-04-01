@@ -18,8 +18,9 @@ public class User {
     @Id
     @GeneratedValue(generator = "native",strategy = GenerationType.AUTO)
     private Long id;
-
+    private String username;
     private String email;
+    private String provider;
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)

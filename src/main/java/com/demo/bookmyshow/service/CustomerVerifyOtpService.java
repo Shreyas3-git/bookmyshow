@@ -5,6 +5,7 @@ import com.demo.bookmyshow.dto.request.VerifyOtpRequest;
 import com.demo.bookmyshow.dto.response.ErrorCode;
 import com.demo.bookmyshow.dto.response.ResponseConstants;
 import com.demo.bookmyshow.dto.response.Status;
+import com.demo.bookmyshow.dto.response.VerifyOtpResponse;
 import com.demo.bookmyshow.repository.primary.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,7 @@ public class CustomerVerifyOtpService
     public ResponseEntity<CommonResponse> verifyOtp(VerifyOtpRequest request) {
         return customerRepository.findByRrnAndReferenceNumber(request.getRrn(), request.getSid())
                 .map(customer -> {
-                    ResponseEntity<String> responseBody = notificationService.twilioVerifyOtp(request.getOtp(), customer.getPhoneNumber());
+                    ResponseEntity<String> responseBody = notificationService.twilioVerifyOtp(request, customer.getPhoneNumber());
                     log.info(String.format("VerifyOtp Response: %s",responseBody));
                     if (responseBody.getStatusCode().is2xxSuccessful()) {
                         customer.setPhoneNumberVerified(true);
