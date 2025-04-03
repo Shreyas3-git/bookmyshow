@@ -49,6 +49,7 @@ public class NotificationService
     private final Supplier<String> getBasicAuthHeader = () -> {
         String credentials = accountSid + ":" + authToken;
         return "Basic " + Base64.getEncoder().encodeToString(credentials.getBytes());
+
     };
 
     private String formatToE164(String phoneNumber) {

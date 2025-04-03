@@ -28,4 +28,10 @@ public class User {
     @Column(name = "role")
     private Set<String> roles;
 
+    public User(String username, String email, String provider) {
+        this.username = username;
+        this.email = email;
+        this.provider = provider;
+    }
+
 }
