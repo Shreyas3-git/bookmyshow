@@ -27,7 +27,9 @@ public class SecurityConfig {
                                 "/errors",
                                 "/.well-known/openid-configuration"
                                 ,"/api/getPdf",
-                                "/api/auth/google/**"
+                                "/api/auth/google/**",
+                                "/signup",      // Allow access to initiate Google signup
+                                "/callback"     // Allow access to callback endpoint
                         ).permitAll()
                         .requestMatchers("/bookmyshow/api/**","/bookmyshow/admin/**").authenticated()
                 )
