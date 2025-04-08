@@ -59,14 +59,6 @@ public class NotificationService
 
     public ResponseEntity<String> twilioVerifyOtp(VerifyOtpRequest request,String phoneNumber) {
         String phoneNum = formatToE164(phoneNumber);
-//        String auth = getBasicAuthHeader.get();
-//        Map<String,String> headers = new HashMap<>();
-//        headers.put("Content-Type","x-www-form-urlencoded");
-//        headers.put("Authorization",auth);
-//        String encodedOtp = URLEncoder.encode(otp,StandardCharsets.UTF_8);
-//        String encodedPhoneNumber = URLEncoder.encode(phoneNum,StandardCharsets.UTF_8);
-//        String requestBody = "Code=" + encodedOtp + "&To=" + encodedPhoneNumber;
-//        log.info(String.format("VerifyOtp Request: %s and Request Header: %s",requestBody,headers));
         Map<String,String> headers = new HashMap<>();
         headers.put("Content-Type","application/x-www-form-urlencoded");
         headers.put("Authorization",getBasicAuthHeader.get());

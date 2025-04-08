@@ -33,11 +33,11 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers("/bookmyshow/api/**","/bookmyshow/admin/**").authenticated()
                 )
-                .oauth2Login(oauth2 -> oauth2
-                        .loginProcessingUrl("/api/auth/google/callback")
-                        .defaultSuccessUrl("/api/auth/google/success", true)
-                        .failureUrl("/api/auth/google/failure")
-                )
+//                .oauth2Login(oauth2 -> oauth2
+//                        .loginProcessingUrl("/api/auth/google/callback")
+//                        .defaultSuccessUrl("/api/auth/google/success", true)
+//                        .failureUrl("/api/auth/google/failure")
+//                )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
                                 .jwtAuthenticationConverter(jwtAuthenticationConverter())

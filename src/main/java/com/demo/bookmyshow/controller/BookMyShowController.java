@@ -7,10 +7,12 @@ import com.demo.bookmyshow.dto.request.VerifyOtpRequest;
 import com.demo.bookmyshow.dto.response.ErrorCode;
 import com.demo.bookmyshow.dto.response.ResponseConstants;
 import com.demo.bookmyshow.dto.response.Status;
+import com.demo.bookmyshow.entity.primary.Movie;
 import com.demo.bookmyshow.entity.secondary.User;
 import com.demo.bookmyshow.repository.secondary.UserRepository;
 import com.demo.bookmyshow.service.CustomerSendOtpService;
 import com.demo.bookmyshow.service.CustomerVerifyOtpService;
+import com.demo.bookmyshow.service.MovieEventService;
 import com.demo.bookmyshow.service.SendPDFAttachmentService;
 import com.nimbusds.jose.shaded.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +37,9 @@ public class BookMyShowController
 
     @Autowired
     private CustomerSendOtpService customerSendOtpService;
-
     @Autowired
     private CustomerVerifyOtpService customerVerifyOtpService;
+
 
     @PostMapping("/shows")
     @PreAuthorize("hasRole('USER')")
@@ -83,4 +85,6 @@ public class BookMyShowController
                 .status(Status.FAILED.name())
                 .build(),HttpStatus.UNAUTHORIZED));
     }
+
+
 }

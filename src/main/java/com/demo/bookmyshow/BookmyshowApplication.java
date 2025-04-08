@@ -9,9 +9,7 @@ import org.springframework.security.config.annotation.web.oauth2.resourceserver.
 @SpringBootApplication
 @EnableFeignClients
 public class BookmyshowApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(BookmyshowApplication.class, args);
 	}
-	
 }

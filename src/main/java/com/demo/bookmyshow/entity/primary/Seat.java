@@ -21,8 +21,12 @@ public class Seat
     private String seatNumber;
 
     @Column(name = "is_booked",columnDefinition = "BOOLEAN")
-    private boolean isBooked;
+    private Boolean isBooked;
 
+    @Column(name = "availble_rows",columnDefinition = "INT")
+    private Integer row;
+
+    private String section;
     //gold,diamond,silver
     private String catagory;
 
@@ -31,4 +35,6 @@ public class Seat
 
     @ManyToMany(mappedBy = "seats")
     private List<Booking> bookings;
+
+    private Double basePrice;
 }

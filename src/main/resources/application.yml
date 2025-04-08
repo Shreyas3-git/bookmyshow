@@ -32,7 +32,7 @@ spring:
       pool-name: OAuthDB-Pool
   jpa:
     hibernate:
-      ddl-auto: validate # safe in production if we add any column or new table it will fail fast application at startup change validate to update
+      ddl-auto: update # safe in production if we add any column or new table it will fail fast application at startup change validate to update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -44,21 +44,21 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:9000/oauth2/jwks
-      client:
-        registration:
-          google:
-            client-id: ${GOOGLE_CLIENT_ID}
-            client-secret: ${GOOGLE_CLIENT_SECRET}
-            scope:
-              - email
-              - profile
-            redirect-uri: "{baseUrl}/login/oauth2/code/google"
-        provider:
-          google:
-            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
-            token-uri: https://oauth2.googleapis.com/token
-            user-info-uri: https://openidconnect.googleapis.com/v1/userinfo
-            user-name-attribute: sub
+#      client:
+#        registration:
+#          google:
+#            client-id: ${GOOGLE_CLIENT_ID}
+#            client-secret: ${GOOGLE_CLIENT_SECRET}
+#            scope:
+#              - email
+#              - profile
+#            redirect-uri: "{baseUrl}/login/oauth2/code/google"
+#        provider:
+#          google:
+#            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+#            token-uri: https://oauth2.googleapis.com/token
+#            user-info-uri: https://openidconnect.googleapis.com/v1/userinfo
+#            user-name-attribute: sub
 logging:
   level:
     org.springframework.security: TRACE

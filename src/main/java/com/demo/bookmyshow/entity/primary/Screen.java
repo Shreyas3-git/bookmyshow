@@ -2,6 +2,7 @@ package com.demo.bookmyshow.entity.primary;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name = "screen")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Screen
 {
     @Id

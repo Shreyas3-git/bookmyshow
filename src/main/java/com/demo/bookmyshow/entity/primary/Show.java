@@ -37,4 +37,6 @@ public class Show
 
     @OneToMany(mappedBy = "shows",cascade = CascadeType.ALL)
     private List<Item> items;
+
+    private boolean isRecurring;
 }
