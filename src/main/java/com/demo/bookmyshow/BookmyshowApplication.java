@@ -13,5 +13,4 @@ public class BookmyshowApplication {
 		SpringApplication.run(BookmyshowApplication.class, args);
 	}
 
-	
 }
