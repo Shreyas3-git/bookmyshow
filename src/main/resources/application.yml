@@ -61,6 +61,7 @@ spring:
 #            user-name-attribute: sub
 logging:
   level:
+    org.hibernate.SQL: DEBUG
     org.springframework.security: TRACE
 
 

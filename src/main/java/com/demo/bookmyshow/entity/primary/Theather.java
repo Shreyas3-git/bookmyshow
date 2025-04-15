@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,5 +30,23 @@ public class Theather
 
     @OneToMany(mappedBy = "theather",cascade = CascadeType.ALL)
     private List<Show> shows;
+
+    // Helper method to add a screen
+    public void addScreen(Screen screen) {
+        if (screens == null) {
+            screens = new ArrayList<>();
+        }
+        screens.add(screen);
+        screen.setTheather(this);
+    }
+
+    // Helper method to add a show
+    public void addShow(Show show) {
+        if (shows == null) {
+            shows = new ArrayList<>();
+        }
+        shows.add(show);
+        show.setTheather(this);
+    }
 
 }

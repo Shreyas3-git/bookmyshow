@@ -31,7 +31,7 @@ public class Screen
 
     private ScreenType screenType;
 
-    @ManyToOne(targetEntity = Theather.class,fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Theather.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "theather_id")
     private Theather theather;
 

@@ -3,17 +3,18 @@ package com.demo.bookmyshow.service;
 import com.demo.bookmyshow.dto.CommonResponse;
 import com.demo.bookmyshow.dto.response.ErrorCode;
 import com.demo.bookmyshow.dto.response.Status;
-import com.demo.bookmyshow.entity.primary.Movie;
-import com.demo.bookmyshow.entity.primary.Show;
-import com.demo.bookmyshow.entity.primary.StarCast;
+import com.demo.bookmyshow.entity.primary.*;
 import com.demo.bookmyshow.repository.primary.MovieRepository;
-import jakarta.transaction.Transactional;
+import com.demo.bookmyshow.repository.primary.ScreenRepository;
+import com.demo.bookmyshow.repository.primary.TheatherRepository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MovieEventService
@@ -21,23 +22,15 @@ public class MovieEventService
     @Autowired
     private MovieRepository movieRepository;
 
-    @Transactional
-    public ResponseEntity<CommonResponse> addMovieEvent(Movie movie) {
-        if(movie.getStarCasts() != null) {
-            for(StarCast starCast : movie.getStarCasts()) {
-                starCast.getMovies().add(movie); // updated inversely to maintain data consistancy
-            }
-        }
-        // Ensure Screen and Theather are linked properly
-        if(movie.getShows() != null) {
-            for(Show shows: movie.getShows()) {
-                if(shows.getTheather() != null && shows.getScreen() != null) {
-                    shows.getTheather().getScreens().add(shows.getScreen()); // Link Screen to Theather
-                    shows.getScreen().setTheather(shows.getTheather()); // Update Screen inverse side
-                }
-            }
-        }
-        movieRepository.save(movie);
+    @Autowired
+    private TheatherRepository theatherRepository;
+
+    @Autowired
+    private ScreenRepository screenRepository;
+
+    @Transactional(transactionManager = "db1TransactionManager")
+    public ResponseEntity<CommonResponse> addMovieEvent(Movie movieEvent) {
+        movieRepository.save(movieEvent);
         return ResponseEntity.ok(CommonResponse.builder()
             .message("Movie Event Added Successfully")
             .status(Status.SUCCESS.name())

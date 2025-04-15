@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -39,6 +40,14 @@ public class Movie
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "start_cast_id"))
     private List<StarCast> starCasts;
+
+    public void addShow(Show show) {
+        if (this.shows == null) {
+            this.shows = new ArrayList<>();
+        }
+        this.shows.add(show);
+        show.setMovies(this); // maintain bidirectional consistency
+    }
 
 
 }
